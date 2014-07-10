@@ -11,11 +11,9 @@
 namespace Mosquitto;
 
 /**
- * Class Client
+ * This is the actual Mosquitto client.
  *
  * @package Mosquitto
- *
- * This is the actual Mosquitto client.
  */
 class Client
 {
@@ -255,11 +253,9 @@ class Client
 }
 
 /**
- * Class Message
+ * Represents a message received from a broker. All data is represented as properties.
  *
  * @package Mosquitto
- *
- * Represents a message received from a broker. All data is represented as properties.
  */
 class Message
 {
@@ -307,11 +303,9 @@ class Message
 }
 
 /**
- * Class Exception
+ * This is an exception that may be thrown by many of the operations in the Client object.
  *
  * @package Mosquitto
- *
- * This is an exception that may be thrown by many of the operations in the Client object.
  */
 class Exception
 {
