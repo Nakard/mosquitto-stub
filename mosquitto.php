@@ -29,7 +29,8 @@ class Client
     public function setCredentials($username, $password) {}
 
     /**
-     * Configure the client for certificate based SSL/TLS support. Must be called before connect(). Cannot be used in conjunction with setTlsPSK().
+     * Configure the client for certificate based SSL/TLS support. Must be called before connect(). Cannot be used in
+     * conjunction with setTlsPSK().
      * <br/><br/>
      * Define the Certificate Authority certificates to be trusted (ie. the server certificate must be signed with
      * one of these certificates) using cafile. If the server you are connecting to requires clients to provide a
