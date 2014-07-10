@@ -38,10 +38,29 @@ class Client
      * encrypted, provide the password as the fourth parameter, or you will have to enter the password at the command
      * line.
      *
-     * @param $capath
-     * @param $certfile
-     * @param $keyfile
-     * @param $password
+     * @param string $capath Path to the PEM encoded trusted CA certificate files, or to a directory containing them
+     * @param string $certfile Path to the PEM encoded certificate file for this client. Optional.
+     * @param string $keyfile Path to a file containing the PEM encoded private key for this client. Required if certfile is set.
+     * @param string $password The password for the keyfile, if it is encrypted. If null, the password will be asked for on the command line.
      */
     public function setTlsCertificates($capath, $certfile, $keyfile, $password) {}
+
+    /**
+     * @param boolean $value If set to false, the default, certificate hostname checking is performed. If set to true,
+     * no hostname checking is performed and the connection is insecure.
+     */
+    public function setTlsInsecure($value) {}
+
+    /**
+     * Set advanced SSL/TLS options. Must be called before connect().
+     *
+     * @param int    $certReqs   Whether or not to verify the server. Can be Mosquitto\Client::SSL_VERIFY_NONE,
+     *                           to disable certificate verification, or Mosquitto\Client::SSL_VERIFY_PEER (the
+     *                           default), to verify the server certificate.
+     * @param string $tlsVersion The TLS version to use. If NULL, a default is used. The default value depends on the
+     *                           version of OpenSSL the library was compiled against. Available options on OpenSSL >=
+     *                           1.0.1 are 'tlsv1.2', 'tlsv1.1' and 'tlsv1'.
+     * @param string $cipers
+     */
+    public function setTlsOptions($certReqs, $tlsVersion, $cipers) {}
 }

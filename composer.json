@@ -1,0 +1,12 @@
+{
+    "name": "nakard/mosquitto-php-stub",
+    "description": "PHPStorm stubs for Mosquitto-PHP extension",
+    "minimum-stability": "dev",
+    "license": "Apache v2",
+    "authors": [
+        {
+            "name": "Arkadiusz Moskwa",
+            "email": "a.moskwa@gmail.com"
+        }
+    ]
+}
