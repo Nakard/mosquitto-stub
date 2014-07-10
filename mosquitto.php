@@ -236,7 +236,7 @@ class Client
      *                          timeout. Defaults to 1000.
      * @param int $max_packets  Currently unused
      */
-    public function loop($timeout = 1000, $max_packets) {}
+    public function loop($timeout = 1000, $max_packets = null) {}
 
     /**
      * Call loop() in an infinite blocking loop. Callbacks will be called as required. This will handle reconnecting
@@ -249,7 +249,7 @@ class Client
      *                          timeout. Defaults to 1000.
      * @param int $max_packets  Currently unused.
      */
-    public function loopForever($timeout, $max_packets) {}
+    public function loopForever($timeout = 1000, $max_packets = null) {}
 }
 
 /**
