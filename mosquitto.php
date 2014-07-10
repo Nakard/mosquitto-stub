@@ -60,7 +60,8 @@ class Client
      * @param string $tlsVersion The TLS version to use. If NULL, a default is used. The default value depends on the
      *                           version of OpenSSL the library was compiled against. Available options on OpenSSL >=
      *                           1.0.1 are 'tlsv1.2', 'tlsv1.1' and 'tlsv1'.
-     * @param string $cipers
+     * @param string $cipers     A string describing the ciphers available for use. See the openssl ciphers tool for
+     *                           more information. If NULL, the default set will be used.
      */
     public function setTlsOptions($certReqs, $tlsVersion, $cipers) {}
 }
