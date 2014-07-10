@@ -10,6 +10,13 @@
 
 namespace Mosquitto;
 
+/**
+ * Class Client
+ *
+ * @package Mosquitto
+ *
+ * This is the actual Mosquitto client.
+ */
 class Client
 {
     /**
@@ -209,5 +216,104 @@ class Client
      */
     public function subscribe($topic, $qos) {}
 
-    public function unsubscribe
+    /**
+     * Unsubscribe from a topic.
+     *
+     * @param   string    $topic  The topic.
+     * @param   int       $qos    The QoS to request for this subscription
+     *
+     * @return  int               Returns the message ID of the subscription message,
+     *                            so this can be matched up in the onUnsubscribe callback.
+     */
+    public function unsubscribe($topic, $qos) {}
+
+    /**
+     * The main network loop for the client. You must call this frequently in order to keep communications between
+     * the client and broker working. If incoming data is present it will then be processed. Outgoing commands,
+     * from e.g. publish(), are normally sent immediately that their function is called,
+     * but this is not always possible. loop() will also attempt to send any remaining outgoing messages,
+     * which also includes commands that are part of the flow for messages with QoS>0.
+     *
+     * @param int $timeout      Optional. Number of milliseconds to wait for network activity. Pass 0 for instant
+     *                          timeout. Defaults to 1000.
+     * @param int $max_packets  Currently unused
+     */
+    public function loop($timeout = 1000, $max_packets) {}
+
+    /**
+     * Call loop() in an infinite blocking loop. Callbacks will be called as required. This will handle reconnecting
+     * if the connection is lost. Call disconnect() in a callback to return from the loop.
+     * <br/><br/>
+     * Note: exceptions thrown in callbacks do not currently cause the loop to exit. To work around this,
+     * use loop() and wrap your own loop structure around it such as a while().
+     *
+     * @param int $timeout      Optional. Number of milliseconds to wait for network activity. Pass 0 for instant
+     *                          timeout. Defaults to 1000.
+     * @param int $max_packets  Currently unused.
+     */
+    public function loopForever($timeout, $max_packets) {}
+}
+
+/**
+ * Class Message
+ *
+ * @package Mosquitto
+ *
+ * Represents a message received from a broker. All data is represented as properties.
+ */
+class Message
+{
+    /**
+     * @var string  The topic this message was delivered to.
+     */
+    public $topic;
+
+    /**
+     * @var string  The payload of this message.
+     */
+    public $payload;
+
+    /**
+     * @var int     The ID of this message.
+     */
+    public $mid;
+
+    /**
+     * @var int     The QoS value applied to this message.
+     */
+    public $qos;
+
+    /**
+     * @var boolean Whether this is a retained message or not.
+     */
+    public $retain;
+
+    /**
+     * Returns true if the supplied topic matches the supplied description, and otherwise false.
+     *
+     * @param  string  $topic         The topic to match
+     * @param  string  $subscription  The subscription to match
+     * @return boolean
+     */
+    public static function topicMatchesSub($topic, $subscription) {}
+
+    /**
+     * Tokenise a topic or subscription string into an array of strings representing the topic hierarchy.
+     *
+     * @param  string $topic
+     * @return array
+     */
+    public static function tokeniseTopic($topic) {}
+}
+
+/**
+ * Class Exception
+ *
+ * @package Mosquitto
+ *
+ * This is an exception that may be thrown by many of the operations in the Client object.
+ */
+class Exception
+{
+
 }
